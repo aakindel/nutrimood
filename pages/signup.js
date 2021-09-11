@@ -10,7 +10,7 @@ export default function Home() {
 
   const registerUser = async (formData) => {
 
-    const res = await fetch('/api/hello', {
+    const res = await fetch('/api/user', {
       body: JSON.stringify(formData),
       headers: {
         'Content-Type': 'application/json'
