@@ -1,9 +1,9 @@
-const {setup} = require('../database');
+const { connect, setup} = require('../database');
 const {uuid} = require('uuidv4');
 
 class Entry {
     static async createEntry({date, food, mood, user_id}) {
-        const db = await setup();
+        const db = await connect();
 
         // generate uuid for new entry
         const id = uuid(); 
@@ -22,7 +22,7 @@ class Entry {
     }
 
     static async getEntriesbyUsername(username) {
-        const db = await setup();
+        const db = await connect();
         const userEntries = await db.all(`SELECT * FROM entries WHERE user = ?`, username);
 
         db.close();
@@ -30,7 +30,7 @@ class Entry {
     }
 
     static async getAllEntries() {
-        const db = await setup();
+        const db = await connect();
         const allEntries = db.all(`SELECT * FROM entries`);
 
         db.close();
