@@ -2,7 +2,7 @@ const { connect, setup} = require('../database');
 const {uuid} = require('uuidv4');
 
 class Entry {
-    static async createEntry(entry_date, food, mood, user_id) {
+    static async createEntry(entry_date, food, mood, user) {
         const db = await connect();
 
         // generate uuid for new entry
@@ -10,7 +10,7 @@ class Entry {
         
         // insert new data into entry table
         const addEntry = await db.run(`INSERT INTO entries (id, entry_date, food, mood, user)
-            VALUES (?, ?, ?, ?, ?)`, id, entry_date, food, mood, user_id
+            VALUES (?, ?, ?, ?, ?)`, id, entry_date, food, mood, user
             );
         
         const viewDb = await db.all(`SELECT * FROM entries`);

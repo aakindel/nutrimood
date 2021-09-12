@@ -51,10 +51,10 @@ export default function Entry() {
 
         /*TO DO relate logged in user to entry to give correct id*/
         const entry = {
-            date: startDate,
+            entry_date: startDate,
             food: foodSelected.id,
             mood: moodSelected.id,
-            user_id: 123
+            user: 'testuser'
         }
 
         const res = await fetch('/api/entry', {
