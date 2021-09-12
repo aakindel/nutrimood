@@ -1,13 +1,13 @@
 const Entry = require('../../../models/entry');
 
 export default async function entryHandler(req, res) {
-    const id = req.query.id;
+    const username = req.query.username;
     const method = req.method;
   
     switch (method) {
     case 'GET':
         /* Get a specific entry using th */
-        const entries = await Entry.getAllEntries();
+        const entries = await Entry.getEntriesByUsername(username);
         res.status(200).json({ entries: entries });
         break
     default:
