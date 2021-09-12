@@ -3,7 +3,7 @@
 // import setup from "../database";
 
 
-const {setup} = require('./database')
+const {setup} = require('../database')
 let db = '';
 async function getdb(){
     db = await setup();
