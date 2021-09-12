@@ -1,11 +1,11 @@
 
-const {setup} = require('../database');
+const { connect,setup} = require('../database');
 const {uuid} = require('uuidv4');
 
 
 class User {
     static async createNewUser(username, first_name, last_name, password) {
-        const db = await setup();
+        const db = await connect();
 
         // query for duplicate username
         const duplicateQuery = await db.all(`SELECT COUNT(*) FROM users WHERE username = ?`, username);
@@ -30,7 +30,7 @@ class User {
     }
 
     static async getUserById(id) {
-        const db = await setup();
+        const db = await connect();
         const user = await db.all(`SELECT * FROM users WHERE id = ?`, id);
         db.close();
 
@@ -38,7 +38,7 @@ class User {
     }
 
     static async getUserByUsername(username) {
-        const db = await setup();
+        const db = await connect();
         const user = await db.all(`SELECT * FROM users WHERE username = ?`, username);
         db.close();
 
@@ -46,7 +46,7 @@ class User {
     }
 
     static async getAllUsers() {
-        const db = await setup();
+        const db = await connect();
         const users = await db.all(`SELECT * FROM users`);
         db.close();
         return JSON.stringify(users); // return format may change

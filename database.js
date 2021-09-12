@@ -11,6 +11,11 @@ async function openDB (){
     });
 }
 
+async function connect(){
+    const db = await openDB()
+    return db
+}
+
 async function setup(){
     db =  await openDB();
     await db.migrate({
@@ -21,5 +26,5 @@ async function setup(){
     return db;
 }
 
-module.exports = {setup}
+module.exports = {connect, setup}
 
