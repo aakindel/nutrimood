@@ -1,22 +1,23 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { v4 as uuidv4 } from 'uuid';
-import User from "../../../models/user";
+const User = require('../../../models/user');
 
-export default function handler(req, res) {
+export default async function userHandler(req, res) {
   
-  const {method} = req;
+  const method = req.method;
+  const {username, first_name, last_name, password} = req.body;
   
   switch (method) {
     case 'GET':
-      res.status(200).json({ name: 'John Doe' })
+      /* Gets all users from database */
+      const users = await User.getAllUsers();
+      res.status(200).json({ users: users });
       break
     case 'POST':
-      // Update or create data in your database
-      const newUser = {...req.body, id: uuidv4()};
-      User.createNewUser(newUser); // error handling needed
-      res.status(201).json(newUser);
-      break
+      /* Todo: create a new user */
+      const user = await User.createUser(username, first_name, last_name, password);
+      res.status(200).json({ user: user});
+      break;
     default:
-      res.status(404).json({ message: `404` })
+      res.setHeader('Allow', [ 'GET', 'POST']);
+      res.status(405).end(`Method ${method} Not Allowed`);
   }
 }
