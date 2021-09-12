@@ -1,6 +1,17 @@
 const {User} = require('../../../models/user');
 import { NextApiRequest, NextApiResponse } from "next";
-import { v4 as uuidv4 } from 'uuid';
+
+async function validateUniqueUsername(username) {
+  let errorMsg = null;
+  const usernameInDb = await User.getUserByUsername(username);
+
+  if (usernameInDb.length != 0) {
+    console.log(usernameInDb)
+    errorMsg = "Username already used"
+    return errorMsg;
+  }
+
+}
 
 export default async function handler(req, res) {
   
