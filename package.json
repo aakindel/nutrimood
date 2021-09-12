@@ -22,7 +22,8 @@
     "react-hook-form": "^7.15.2",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.12"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.4",

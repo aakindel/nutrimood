@@ -1,3 +1,5 @@
+// WARNING: OUTDATED AND JANK
+
 // import { NextApiRequest, NextApiResponse } from "next";
 // import sqlite3 from 'sqlite3';
 // import setup from "../database";
