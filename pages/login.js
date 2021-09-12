@@ -1,3 +1,4 @@
+import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react';
@@ -11,9 +12,11 @@ export default function Home() {
     logInUser(formData)
   }
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const logInUser = async (formData) => {
 
-    const res = await fetch('/api/user', {
+    const res = await fetch('/api/auth', {
       body: JSON.stringify(formData),
       headers: {
         'Content-Type': 'application/json'
@@ -23,9 +26,19 @@ export default function Home() {
 
     const result = await res.json()
     console.log(JSON.stringify(result));
+    if (result !== null) {
+      setIsLoggedIn(true);
+    }
+    
   }
 
   const [submitting, setSubmitting] = useState(false);
+
+  const router = useRouter();
+
+  if (isLoggedIn) {
+    router.push("/dashboard")
+  }
 
   return (
     <div>
