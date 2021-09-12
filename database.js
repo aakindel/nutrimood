@@ -16,7 +16,6 @@ async function setup(){
     await db.migrate({
         migrationsPath: './migrations',  
         force: 'last'});
-    const users = await db.all(`SELECT * FROM users`);
 
     return db;
 }
