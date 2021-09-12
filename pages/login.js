@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState } from 'react';
 import { useForm } from 'react-hook-form'
 
 export default function Home() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, 
+    formState: { errors } } = useForm();
 
   const submitHandler = (formData) => {
     logInUser(formData)
@@ -23,6 +25,8 @@ export default function Home() {
     console.log(JSON.stringify(result));
   }
 
+  const [submitting, setSubmitting] = useState(false);
+
   return (
     <div>
       <Head>
@@ -33,15 +37,20 @@ export default function Home() {
 
       <div className="grid min-h-screen place-items-center">
         <div className="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12">
-          <h1 className="text-xl font-semibold">
-            Hello again 👋, 
+          <h1 className="text-5xl font-bold text-center my-6">Login</h1>
+          <h1 className="text-xl text-center font-semibold">
+            <span className="m-0">Hello again 👋
+              <span className="font-normal">!</span> </span>
             <span className="font-normal">
-              please log in
+              Please log in.
             </span>
           </h1>
 
-          <form className="mt-6" onSubmit={handleSubmit((formData) => {
+          <form className="mt-6" onSubmit={
+            handleSubmit((formData) => {
+              setSubmitting(true)
               submitHandler(formData)
+              setSubmitting(false)
             })
           }>
                
@@ -55,8 +64,11 @@ export default function Home() {
               placeholder="Doe" autoComplete="last-name" 
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 
                 appearance-none focus:outline-none focus:bg-gray-300 
-                focus:shadow-inner" required 
-              {...register("username")} />
+                focus:shadow-inner" 
+              {...register("username", {required: "required"})} />
+            {errors?.username ? 
+              <div className="text-red-500 text-xs my-1">
+                {errors?.username.message}</div> : null}
             
             
             {/* Password */}
@@ -69,13 +81,17 @@ export default function Home() {
               placeholder="********" autoComplete="new-password" 
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 
                 appearance-none focus:outline-none focus:bg-gray-300 
-                focus:shadow-inner" required 
-              {...register("password")} />
+                focus:shadow-inner" 
+              {...register("password", {required: "required"})} />
+            {errors?.password ? 
+              <div className="text-red-500 text-xs my-1">
+                {errors?.password.message}</div> : null}
             
             {/* Login Button */}
             <button type="submit" className="w-full py-3 mt-6 font-medium 
               tracking-widest text-white uppercase bg-black shadow-lg 
-              focus:outline-none hover:bg-gray-900 hover:shadow-none">
+              focus:outline-none hover:bg-gray-900 hover:shadow-none"
+              disabled={submitting} >
                 Login
             </button>
 
