@@ -28,4 +28,12 @@ class Entry {
         db.close();
         return JSON.stringify(userEntries);
     }
+
+    static async getAllEntries() {
+        const db = await setup();
+        const allEntries = db.all(`SELECT * FROM entries`);
+
+        db.close();
+        return JSON.stringify(allEntries);
+    }
 }
