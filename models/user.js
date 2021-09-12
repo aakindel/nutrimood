@@ -13,7 +13,6 @@ async function getdb(){
 getdb();
 console.log(db)
 
-// export default class User {
 class User {
     static async createNewUser({username, first_name, last_name, password}) {
         const db = await setup();

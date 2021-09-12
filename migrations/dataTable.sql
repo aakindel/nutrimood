@@ -11,10 +11,9 @@ CREATE TABLE users (
 
 CREATE TABLE entries (
   id VARCHAR PRIMARY KEY,
-  date TEXT NOT NULL,
-  food_health_rating TEXT NOT NULL,
-  mood TEXT NOT NULL,
-  food TEXT NOT NULL, /* Combine list of food into a large string */
+  entry_date DATE NOT NULL,
+  mood INTEGER NOT NULL,
+  food INTEGER NOT NULL, 
   user_id REFERENCES users(id)
 );
 
@@ -28,9 +27,8 @@ VALUES ('testuser',
        
 INSERT INTO entries (id, date, food_health_rating, mood, food, user_id)
 VALUES ('lk4435hkj345l3fs',
-        'feb08,2021',
-        '8',
-        'happy',
-        'banana,chicken,oreo',
+        new Date(),
+        8,
+        5,
         'djnfidnrigndbi1e82'
         );
