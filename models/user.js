@@ -1,21 +1,10 @@
-// import { NextApiRequest, NextApiResponse } from "next";
-// import sqlite3 from 'sqlite3';
-// import uuid from 'uuidv4';
-// import setup from "../database";
 
 const {setup} = require('../database');
 const {uuid} = require('uuidv4');
 
-let db = '';
-async function getdb(){
-    db = await setup();
-}
-getdb();
-console.log(db)
 
-// export default class User {
 class User {
-    static async createNewUser({username, first_name, last_name, password}) {
+    static async createNewUser(username, first_name, last_name, password) {
         const db = await setup();
 
         // query for duplicate username
@@ -24,7 +13,8 @@ class User {
             throw new Error('Error: username already exists');
         }
 
-        const id = uuid(); // generate uuid for new user
+        // generate uuid for new user
+        const id = uuid(); 
         
         // insert new data into user table
         const addUser = await db.run(`INSERT INTO users (username, first_name, last_name, password, id)
@@ -35,6 +25,8 @@ class User {
         console.log(viewDb);
         
         db.close();
+
+        return JSON.stringify(addUser);
     }
 
     static async getUserById(id) {
@@ -53,11 +45,12 @@ class User {
         return JSON.stringify(user); // return format may change
     }
 
-    static async getAllUser() {
+    static async getAllUsers() {
         const db = await setup();
         const users = await db.all(`SELECT * FROM users`);
         db.close();
-
         return JSON.stringify(users); // return format may change
     }
 }
+
+module.exports = { User }
