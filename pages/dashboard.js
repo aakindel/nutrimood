@@ -1,6 +1,7 @@
 import { Line } from 'react-chartjs-2';
 import Navbar from '../components/navbar'
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Dashboard() {
   return (
@@ -31,14 +32,16 @@ export default function Dashboard() {
                       <dd className="order-1 text-1xl font-extrabold text-indigo-600">Food Rating Today</dd>
                     </div>
                     <div className="bg-indigo-500 flex flex-col border-t border-gray-100 rounded-lg  p-6 text-center sm:border-0 sm:border-l">
-                      <button>
-                      <dd className="order-1 text-1xl font-extrabold text-gray-100">
-                        Add New Entry
-                      </dd>
-                      <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                        <Image className="block lg:hidden w-auto"  src='/plus.png' width={20} height = {20} alt='plus'/>
-                      </dt>
-                    </button>
+                      <a href='entry'>
+                        <button>
+                          <dd className="order-1 text-1xl font-extrabold text-gray-100">
+                            Add New Entry
+                          </dd>
+                          <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                            <Image className="block lg:hidden w-auto"  src='/plus.png' width={20} height = {20} alt='plus'/>
+                          </dt>
+                        </button>
+                      </a>
                     </div>
                   </dl>
                 </div>
