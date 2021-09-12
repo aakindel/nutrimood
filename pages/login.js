@@ -1,8 +1,9 @@
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form'
+import UserContext from '../UserContext';
 
 export default function Home() {
   const { register, handleSubmit, 
@@ -13,6 +14,7 @@ export default function Home() {
   }
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {loggedInUser, setLoggedInUser} = useContext(UserContext);
 
   const logInUser = async (formData) => {
 
@@ -25,9 +27,11 @@ export default function Home() {
     })
 
     const result = await res.json()
-    console.log(JSON.stringify(result));
-    if (result !== null) {
+    console.log(result);
+    if ((result?.username !== null)) {
       setIsLoggedIn(true);
+      setLoggedInUser(result);
+      console.log(loggedInUser)
     }
     
   }

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/dist/client/router';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form'
 
@@ -14,6 +15,8 @@ export default function Home() {
     registerUser(formData)
   }
 
+  const router = useRouter();
+
   const registerUser = async (formData) => {
 
     const res = await fetch('/api/user', {
@@ -26,6 +29,8 @@ export default function Home() {
 
     const result = await res.json()
     console.log(JSON.stringify(result));
+
+    router.push("/dashboard")
   }
 
   const [submitting, setSubmitting] = useState(false);
@@ -171,12 +176,16 @@ export default function Home() {
                 {errors?.password_confirm.message}</div> : null}
             
             {/* Sign Up Button */}
-            <button type="submit" className="w-full py-3 mt-6 font-medium 
-              tracking-widest text-white uppercase bg-black shadow-lg 
-              focus:outline-none hover:bg-gray-900 hover:shadow-none"
-              disabled={submitting} >
-                Sign up
-            </button>
+            <Link href="/dashboard">
+              <a>
+                <button type="submit" className="w-full py-3 mt-6 font-medium 
+                  tracking-widest text-white uppercase bg-black shadow-lg 
+                  focus:outline-none hover:bg-gray-900 hover:shadow-none"
+                  disabled={submitting} >
+                    Sign up
+                </button>
+              </a>
+            </Link>
 
             {/* Already Registed */}
             <p className="flex flex-start">
