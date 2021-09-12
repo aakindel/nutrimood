@@ -2,8 +2,8 @@ import { Fragment} from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { PlusSmIcon } from '@heroicons/react/solid'
+import {  MenuIcon, XIcon } from '@heroicons/react/outline'
+
 
 
 function classNames(...classes) {
@@ -31,7 +31,7 @@ export default function Navbar() {
                 </div>
                 <div className="flex-shrink-0 flex items-center">
                   <Image className="block lg:hidden w-auto"  src='/logo.png' width={60} height = {40} alt='logo'/>
-                  <div className = 'font-large pr-6 text-yellow-600'>
+                  <div className = 'text-2xl pr-6 text-yellow-600'>
                     NutriMood
                   </div>
                 </div>
