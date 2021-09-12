@@ -99,7 +99,7 @@ export default function Home() {
             <p className="flex flex-start">
               <span className="flex justify-between inline-block mt-4 
                 text-xs text-gray-500 m-1">
-                  Don't have an account?
+                  Dont have an account?
               </span> 
               <Link href="/signup">
                 <a>
