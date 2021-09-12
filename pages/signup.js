@@ -61,9 +61,9 @@ export default function Home() {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                  username: formData.username,
                   first_name: formData.first_name,
                   last_name: formData.last_name,
-                  username: formData.username,
                   password: formData.password,
                 }),
               })

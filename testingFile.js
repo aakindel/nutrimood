@@ -1,11 +1,11 @@
+// WARNING: OUTDATED AND JANK
+
 // import { NextApiRequest, NextApiResponse } from "next";
 // import sqlite3 from 'sqlite3';
-// import uuid from 'uuidv4';
 // import setup from "../database";
 
-const {setup} = require('../database');
-const {uuid} = require('uuidv4');
 
+const {setup} = require('./database')
 let db = '';
 async function getdb(){
     db = await setup();
@@ -15,7 +15,7 @@ console.log(db)
 
 // export default class User {
 class User {
-    static async createNewUser({username, first_name, last_name, password}) {
+    static async createNewUser({username, first_name, last_name, password, id}) {
         const db = await setup();
 
         // query for duplicate username
@@ -24,8 +24,6 @@ class User {
             throw new Error('Error: username already exists');
         }
 
-        const id = uuid(); // generate uuid for new user
-        
         // insert new data into user table
         const addUser = await db.run(`INSERT INTO users (username, first_name, last_name, password, id)
             VALUES (?, ?, ?, ?, ?)`, username, first_name, last_name, password, id
@@ -42,7 +40,7 @@ class User {
         const user = await db.all(`SELECT * FROM users WHERE id = ?`, id);
         db.close();
 
-        return JSON.stringify(user); // return format may change
+        return JSON.stringify(user);
     }
 
     static async getUserByUsername(username) {
@@ -50,14 +48,11 @@ class User {
         const user = await db.all(`SELECT * FROM users WHERE username = ?`, username);
         db.close();
 
-        return JSON.stringify(user); // return format may change
-    }
-
-    static async getAllUser() {
-        const db = await setup();
-        const users = await db.all(`SELECT * FROM users`);
-        db.close();
-
-        return JSON.stringify(users); // return format may change
+        return JSON.stringify(user);
     }
 }
+
+const newUser = {username: 'sample1', first_name: 'sample2', last_name: 'sample3', password: 'sample4', id: 'sample5'};
+// const newUser = ('sample1', 'sample2', 'sample3', 'sample4', 'sample5');
+User.createNewUser(newUser)
+
