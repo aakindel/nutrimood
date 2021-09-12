@@ -3,7 +3,15 @@ import Navbar from '../components/navbar'
 import Image from 'next/image';
 import Link from 'next/link';
 
+
+
+
 export default function Dashboard() {
+
+  const username = getLoggedInUserUsername()
+  const entries = getEntriesByUsername(username)
+  const todayEntries = getEntriesByDate(new Date())
+
   return (
       <>
       <Navbar/>

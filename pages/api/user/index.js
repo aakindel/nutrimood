@@ -24,15 +24,12 @@ export default async function userHandler(req, res) {
       break;
     case 'POST':
       //const {username, first_name, last_name, password} = req.body;
-      
+
       const username = req.body.username
       const first_name = req.body.first_name
       const last_name = req.body.last_name
       const password = req.body.password
 
-  
-
-      console.log(username, "*******************")
 
       const errorMsg = await validateUniqueUsername(username);
       if (!errorMsg) {
