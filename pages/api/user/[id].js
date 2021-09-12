@@ -1,4 +1,4 @@
-const User = require('../../../models/user');
+const {User} = require('../../../models/user');
 
 export default async function userHandler(req, res) {
     const id = req.query.id;
@@ -7,7 +7,7 @@ export default async function userHandler(req, res) {
     switch (method) {
         case 'GET':
             /* Get specific user from the database using id*/
-            const user = await User.getUser(id);
+            const user = await User.getUserByUsername(id);
             res.status(200).json({ user: user})
             break
         default:
