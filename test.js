@@ -3,7 +3,7 @@
 // import setup from "../database";
 
 
-const {setup} = require('../database')
+const {setup} = require('./database')
 let db = '';
 async function getdb(){
     db = await setup();
@@ -47,7 +47,7 @@ class User {
     }
 }
 
-let newUser = {username: "sample1", first_name: "sample2", last_name: "sample3", password: "sample4", uid: "sample5"};
+const newUser = ['sample1', 'sample2', 'sample3', 'sample4', 'sample5'];
 User.createNewUser(newUser);
 
-console.log(db);
+
