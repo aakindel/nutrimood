@@ -12,9 +12,9 @@ CREATE TABLE users (
 CREATE TABLE entries (
   id VARCHAR PRIMARY KEY,
   entry_date DATE NOT NULL,
-  mood INTEGER NOT NULL,
   food INTEGER NOT NULL, 
-  user_id REFERENCES users(id)
+  mood INTEGER NOT NULL,
+  user REFERENCES users(username)
 );
 
 INSERT INTO users (username, first_name, last_name, password, id)
