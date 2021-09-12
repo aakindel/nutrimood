@@ -14,13 +14,14 @@ async function openDB (){
 async function setup(){
    
     db =  await openDB();
-    try{
+
     await db.migrate({
-        migrationsPath: './migrations/',
+        migrationsPath: '../migrations',  // this path isn't absolute
         force: 'last'});
-    }catch(error){
-        console.log(error)
-    }
+
+    const users = await db.all(`SELECT * FROM users`);
+    // console.log(users);
+
     return db;
 }
 
