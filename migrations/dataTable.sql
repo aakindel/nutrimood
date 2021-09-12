@@ -28,7 +28,7 @@ VALUES ('testuser',
        
 INSERT INTO entries (id, date, food_health_rating, mood, food, user_id)
 VALUES ('lk4435hkj345l3fs',
-        'feb08 2021',
+        'feb08,2021',
         '8',
         'happy',
         'banana,chicken,oreo',
