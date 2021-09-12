@@ -1,5 +1,6 @@
 import { Fragment} from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { PlusSmIcon } from '@heroicons/react/solid'
@@ -14,12 +15,12 @@ export default function Navbar() {
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
-          <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="z-50 max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
               <div className="flex">
                 <div className="-ml-2 mr-2 flex items-center md:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Disclosure.Button className="z-50 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -36,12 +37,13 @@ export default function Navbar() {
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
-                    href="#"
-                    className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  <div className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  <Link
+                    href="/dashboard"
                   >
                     Dashboard
-                  </a>
+                  </Link>
+                  </div>
                 </div>
               </div>
               <div className="flex items-center">
@@ -49,7 +51,7 @@ export default function Navbar() {
 
 
                   {/* Profile dropdown */}
-                  <Menu as="div" className="ml-3 relative">
+                  <Menu as="div" className="z-50 ml-3 relative">
                     <div>
                       <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span className="sr-only">Open user menu</span>
