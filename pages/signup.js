@@ -29,6 +29,7 @@ export default function Home() {
   }
 
   const [submitting, setSubmitting] = useState(false);
+  const [usernameErrorMsg, setUsernameErrorMsg] = useState(null);
 
   return (
     <div>
@@ -50,46 +51,67 @@ export default function Home() {
           </h1>
 
           <form className="mt-6" onSubmit={
-            handleSubmit((formData) => {
-              setSubmitting(true)
-              submitHandler(formData)
+            handleSubmit(async (formData) => {
+              setSubmitting(true);
+              setUsernameErrorMsg(null);
+              
+              const response = await fetch('/api/user', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  username: formData.username,
+                  first_name: formData.first_name,
+                  last_name: formData.last_name,
+                  password: formData.password,
+                }),
+              })
+          
+              const result = await response.json()
+              console.log(JSON.stringify(result));
+
+              if (result.errorMsg) {
+                setUsernameErrorMsg(result.errorMsg);
+              }
+
               setSubmitting(false)
             })
           }>
 
             <>
             {/* First Name */}
-            <label htmlFor="firstname" 
+            <label htmlFor="first_name" 
               className="block 
                 mt-2 text-xs font-semibold text-gray-600 uppercase">
                   First Name
             </label>
-            <input id="firstname" type="text" name="firstname" 
+            <input id="first_name" type="text" name="first_name" 
               placeholder="John" autoComplete="first-name" 
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 
                 appearance-none focus:outline-none focus:bg-gray-300 
                 focus:shadow-inner" 
-              {...register("firstname", {required: "required"})} />
-            {errors?.firstname ? 
+              {...register("first_name", {required: "required"})} />
+            {errors?.first_name ? 
               <div className="text-red-500 text-xs my-1">
-                {errors?.firstname.message}</div> : null}
+                {errors?.first_name.message}</div> : null}
             </>
             
             {/* Last Name */}
-            <label htmlFor="lastname" 
+            <label htmlFor="last_name" 
               className="block 
                 mt-2 text-xs font-semibold text-gray-600 uppercase">
                   Last Name
             </label>
-            <input id="lastname" type="text" name="lastname" 
+            <input id="last_name" type="text" name="last_name" 
               placeholder="Doe" autoComplete="last-name" 
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 
                 appearance-none focus:outline-none focus:bg-gray-300 
                 focus:shadow-inner"  
-              {...register("lastname", {required: "required"})} />
-            {errors?.lastname ? 
+              {...register("last_name", {required: "required"})} />
+            {errors?.last_name ? 
               <div className="text-red-500 text-xs my-1">
-                {errors?.lastname.message}</div> : null}
+                {errors?.last_name.message}</div> : null}
             
             {/* Username */}
             <label htmlFor="username" 
@@ -106,6 +128,9 @@ export default function Home() {
             {errors?.username ? 
               <div className="text-red-500 text-xs my-1">
                 {errors?.username.message}</div> : null}
+            {usernameErrorMsg ? 
+              <div className="text-red-500 text-xs my-1">
+                {usernameErrorMsg}</div> : null}
             
             {/* Password */}
             <label htmlFor="password" 
