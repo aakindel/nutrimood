@@ -2,8 +2,12 @@ const Entry = require('../../../models/entry');
 
 export default async function entryHandler(req, res) {
   const method = req.method;
-  const {date, rating, mood, food, user_id} = req.body;
-  
+
+  const date = req.body.date
+  const mood= req.body.mood
+  const food= req.body.food
+  const user_id = req.body.user_id;
+
   switch (method) {
     case 'GET':
       /* Gets all entries from database */
@@ -12,7 +16,7 @@ export default async function entryHandler(req, res) {
       break
     case 'POST':
       /* Todo: create a new entry */
-      const entry = await Entry.createEntry(date, rating, mood, food, user_id);
+      const entry = await Entry.createEntry(date, 0, mood, food, user_id);
       res.status(200).json({ entry: entry});
       break;
     default:
