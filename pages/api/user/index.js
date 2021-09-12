@@ -3,7 +3,7 @@ const User = require('../../../models/user');
 export default async function userHandler(req, res) {
   
   const method = req.method;
-  const {username, first_name, last_name, password, id} = req.body;
+  const {username, first_name, last_name, password} = req.body;
   
   switch (method) {
     case 'GET':
@@ -13,7 +13,7 @@ export default async function userHandler(req, res) {
       break
     case 'POST':
       /* Todo: create a new user */
-      const user = await User.createNewUser(username, first_name, last_name, password, id);
+      const user = await User.createNewUser(username, first_name, last_name, password);
       res.status(200).json({ user: user});
       break;
     default:
