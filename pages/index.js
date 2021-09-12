@@ -15,20 +15,20 @@ export default function Home() {
         flex flex-col justify-center p-10">
           <div className="relative w-full max-w-full 
             lg:max-w-6xl xl:max-w-screen-2xl mx-auto">
-              <div className="absolute inset-0 -mr-3.5 bg-gradient-to-r 
+              <div className="absolute inset-0 -mr-3.5 bg-gradient-to-r
                 from-red-100 to-purple-500 shadow-lg transform 
                 -skew-y-6 sm:skew-y-0 sm:rotate-3 sm:rounded-3xl"></div>
               <div className="relative bg-white shadow-lg sm:rounded-3xl">
 
                 <div className="flex items-center justify-start pt-6 pl-6">
-                  <span className="w-3 h-3 
+                  <span className="w-3 h-3
                     bg-red-400 rounded-full mr-2"></span>
-                  <span className="w-3 h-3 
+                  <span className="w-3 h-3
                     bg-yellow-400 rounded-full mr-2"></span>
-                  <span className="w-3 h-3 
+                  <span className="w-3 h-3
                     bg-green-400 rounded-full mr-2"></span>
                 </div>
-                
+
                 <div className="px-20 py-6">
                   
                   {/* <!-- nav --> */}

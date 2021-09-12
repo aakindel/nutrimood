@@ -55,7 +55,7 @@ export default function Navbar() {
                     <div>
                       <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span className="sr-only">Open user menu</span>
-                        <Image className="h-8 w-8 rounded-full" src="/user.png" width={50} height = {50}/>
+                        <Image className="h-8 w-8 rounded-full" alt ='user icon' src="/user.png" width={50} height = {50}/>
                       </Menu.Button>
                     </div>
                     <Transition
