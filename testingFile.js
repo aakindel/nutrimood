@@ -28,10 +28,10 @@ class User {
         const addUser = await db.run(`INSERT INTO users (username, first_name, last_name, password, id)
             VALUES (?, ?, ?, ?, ?)`, username, first_name, last_name, password, id
             );
-        
+
         const viewDb = await db.all(`SELECT * FROM users`);
         console.log(viewDb);
-        
+
         db.close();
     }
 
