@@ -1,7 +1,8 @@
+const {User} = require('../../../models/user');
 import { NextApiRequest, NextApiResponse } from "next";
 import { v4 as uuidv4 } from 'uuid';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   
   const {method} = req
   
@@ -10,9 +11,20 @@ export default function handler(req, res) {
       res.status(200).json({ name: 'John Doe' })
       break
     case 'POST':
-      // Update or create data in your database
-      res.status(201).json({...req.body, id: uuidv4()})
-      // authenticateUser(req.body.name, req.body.pass, etc.)
+      //const {username, first_name, last_name, password} = req.body;
+      
+      const username = req.body.username
+      const password = req.body.password
+
+      let userArray;
+      console.log(username, "*******************")
+
+      /* Todo: create a new user */
+      userArray = await User.getUserByUsername(username);
+      (userArray.length > 0) 
+        ? res.status(201).json({ user: userArray}) 
+        : res.status(404).json({ errorMsg: `user not found`})
+      
       break
     default:
       res.status(404).json({ message: `404` })
