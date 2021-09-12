@@ -14,16 +14,14 @@ async function openDB (){
 async function setup(){
    
     db =  await openDB();
-
+    try{
     await db.migrate({
-        migrationsPath: './migrations',
+        migrationsPath: './migrations/',
         force: 'last'});
-
-    const users = await db.all(`SELECT * FROM users`);
-    console.log(users)
-
-    return db
-
+    }catch(error){
+        console.log(error)
+    }
+    return db;
 }
 
 module.exports = {setup}
