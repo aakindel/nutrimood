@@ -72,6 +72,8 @@ export default function Entry() {
     return (
         <>
         <Navbar/>
+ 
+        <div className="mt-5 rounded-lg bg-white shadow-lg border-2 border-gray-100">
         <div className='mt-10 flex items-center justify-center w-screen' >
           Pick A Date To Make An Entry For
         </div>
@@ -221,7 +223,7 @@ export default function Entry() {
                 </Listbox>
             {/* End scale */}
         </div>
-        <div className='mt-10 flex items-center justify-center w-screen' >
+        <div className='mt-10 mb-2 flex items-center justify-center w-screen' >
             <Link href={'/dashboard'} passHref>
             <button
                 type="button"
@@ -231,6 +233,7 @@ export default function Entry() {
                 Submit
             </button>
             </Link>
+        </div>
         </div>
     </>
     )
