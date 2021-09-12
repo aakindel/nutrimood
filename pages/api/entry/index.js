@@ -16,7 +16,7 @@ export default async function entryHandler(req, res) {
       break
     case 'POST':
       /* Todo: create a new entry */
-      const entry = await Entry.createEntry(date, 0, mood, food, user_id);
+      const entry = await Entry.createEntry(date, mood, food, user_id);
       res.status(200).json({ entry: entry});
       break;
     default:
