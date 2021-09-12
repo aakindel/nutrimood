@@ -25,9 +25,9 @@ VALUES ('testuser',
         'djnfidnrigndbi1e82'
         );
        
-INSERT INTO entries (id, date, food_health_rating, mood, food, user_id)
+INSERT INTO entries (id, entry_date, food, mood, user)
 VALUES ('lk4435hkj345l3fs',
-        new Date(),
+        Date(),
         8,
         5,
         'djnfidnrigndbi1e82'
