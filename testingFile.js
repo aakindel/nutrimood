@@ -49,3 +49,8 @@ class User {
         return JSON.stringify(user);
     }
 }
+
+const newUser = {username: 'sample1', first_name: 'sample2', last_name: 'sample3', password: 'sample4', id: 'sample5'};
+// const newUser = ('sample1', 'sample2', 'sample3', 'sample4', 'sample5');
+User.createNewUser(newUser)
+
