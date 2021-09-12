@@ -16,7 +16,7 @@ async function setup(){
     db =  await openDB();
 
     await db.migrate({
-        migrationsPath: './migrations',  // TODO: this path doesn't work 
+        migrationsPath: '../migrations',  // this path isn't absolute
         force: 'last'});
 
     const users = await db.all(`SELECT * FROM users`);
