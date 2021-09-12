@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       /* Todo: create a new user */
       userArray = await User.getUserByUsername(username);
       (userArray.length > 0) 
-        ? res.status(201).json({ user: userArray}) 
+        ? res.status(201).json({ user: JSON.parse(userArray)[0]}) 
         : res.status(404).json({ errorMsg: `user not found`})
       
       break

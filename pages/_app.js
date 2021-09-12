@@ -1,18 +1,16 @@
 import { useMemo, useState } from 'react'
 import '../styles/globals.css'
-import { UserContext } from '../UserContext'
+import { UserProvider } from '../UserContext'
 
 function MyApp({ Component, pageProps }) {
-  const [loggedInUser, setLoggedInUser] = useState({})
-  const providerValue = useMemo(() => {
-    (loggedInUser, setLoggedInUser)}, 
-    [loggedInUser, setLoggedInUser]
-  )
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const value = useMemo(() => ({ loggedInUser, setLoggedInUser }), [loggedInUser, setLoggedInUser]);
 
   return (
-    <UserContext.Provider value={providerValue}>
+    <UserProvider value={value}>
       <Component {...pageProps} />
-    </UserContext.Provider>
+    </UserProvider>
   )
 }
 
