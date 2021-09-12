@@ -12,13 +12,10 @@ async function openDB (){
 }
 
 async function setup(){
-   
     db =  await openDB();
-
     await db.migrate({
-        migrationsPath: './migrations',  // this path isn't absolute, will probably break
+        migrationsPath: './migrations',  
         force: 'last'});
-
     const users = await db.all(`SELECT * FROM users`);
 
     return db;
